@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Docker hands-on</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/novencia.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Docker</h1>
+					<h2>A Novencia hands-on lab</h2>
+					<img src="https://www.docker.com/sites/default/files/moby.svg" height="400"/>
+				</section>
+				<section>
+					<h2>Déroulement</h2>
+					<ul>
+						<li>Docker basics</li>
+						<li>writing Dockerfile</li>
+						<li>Docker-compose</li>
+					</ul>
+				</section>
+				<section>
+					<h1 class="section-title">Basics</h1>
+					<section>
+						<h2>What is docker ?</h2>
+						<ul>
+							<li>Container not VM</li>
+							<li>A toolbox</li>
+							<li>Build on linux</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Under the hood</h2>
+						<ul>
+							<li>Linux container (LXC)</li>
+							<li>Control groups</li>
+							<li>UnionFS</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Docker Architecture</h2>
+						<ul>
+							<li>Docker-cli</li>
+							<li>Docker API</li>
+							<li>Docker daemon</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Docker Architecture</h2>
+						<img src="https://docs.docker.com/engine/article-img/architecture.svg" alt="docker architecture"/>
+					</section>
+					<section>
+						<h2>Docker words</h2>
+						<ul>
+							<li>Image</li>
+							<li>Container</li>
+							<li>Repository</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Docker layers</h2>
+						<img src="https://github.com/docker/dceu_tutorials/raw/master/images/container-layers.jpg" alt="docker layers"/>
+					</section>
+				</section>
+				<section>
+					<h2>Install docker</h2>
+					<pre><code>$ sudo apt-get install docker.io</code></pre>
+					<pre><code>$ sudo apt-get install git</code></pre>
+				</section>
+				<section>
+					<h1 class="section-title">Commands</h1>
+					<section>
+						<h2>Commands</h2>
+						<pre><code>
+$ docker build -t myContainer ./
+$ docker run myContainer
+
+$ docker images
+$ docker ps
+
+$ docker pull
+						</code></pre>
+					</section>
+					<section>
+						<h2>Let's try it</h2>
+						<pre><code>$ docker run docker/whalesay cowsay boo</code></pre>
+					</section>
+				</section>
+				<section>
+					<h1 class="section-title">Writing Dockerfile</h1>
+					<section>
+						<pre><code>FROM</code></pre> Sets the Base Image for subsequent instructions.
+						<pre><code>RUN</code></pre> execute a command and create a new layer.
+						<pre><code>CMD</code></pre> provide defaults for an executing container.
+						<pre><code>COPY</code></pre> copies new files or directories to container.
+					</section>
+					<section>
+						<pre><code>ENV</code></pre> sets environment variable.
+						<pre><code>EXPOSE</code></pre> expose container port to the outside.
+						<pre><code>ENTRYPOINT</code></pre> executable to run.
+						<pre><code>VOLUME</code></pre> creates a mount point.
+					</section>
+					<section>
+						<a href="https://github.com/wsargent/docker-cheat-sheet">https://github.com/wsargent/docker-cheat-sheet</a>
+					</section>
+					<section>
+						<h2>whalesay Dockerfile</h2>
+						<pre><code>
+FROM ubuntu:14.04
+
+# install cowsay, and move the "default.cow"
+# out of the way so we can overwrite it with "docker.cow"
+RUN apt-get update && apt-get install -y cowsay --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/* \
+  && mv /usr/share/cowsay/cows/default.cow /usr/share/cowsay/cows/orig-default.cow
+
+# "cowsay" installs to /usr/games
+ENV PATH $PATH:/usr/games
+
+COPY docker.cow /usr/share/cowsay/cows/
+RUN ln -sv /usr/share/cowsay/cows/docker.cow /usr/share/cowsay/cows/default.cow
+
+CMD ["cowsay"]
+						</code></pre>
+					</section>
+					<section>
+						<h2>Your mission</h2>
+						<p>Get the whale say fortunes</p>
+						<ul>
+							<li>Install fortune-mod</li>
+							<li>run fortune | cowsay</li>
+						</ul>
+					</section>
+					<section>
+						<h2>whalefortune dockerfile</h2>
+						<pre><code>
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y cowsay fortune-mod
+RUN mv /usr/share/cowsay/cows/default.cow /usr/share/cowsay/cows/orig-default.cow
+COPY docker.cow /usr/share/cowsay/cows/
+RUN ln -sv /usr/share/cowsay/cows/docker.cow /usr/share/cowsay/cows/default.cow
+
+RUN rm -rf /var/lib/apt/lists/*
+ENV PATH $PATH:/usr/games
+
+CMD fortune | cowsay
+						</code></pre>
+					</section>
+					<section>
+						<h2>Change the fortunes</h2>
+						<ul>
+							<li>Go to <a href="https://www.fortunes-fr.org/">https://www.fortunes-fr.org/</a></li>
+							<li>Download a fortune file -> fortune.dat</li>
+							<li>it should go in /usr/share/games/fortunes/</li>
+							<li>Modify Dockerfile with VOLUME</li>
+						</ul>
+						<pre><code>docker run -ti whalefortune bash</code></pre>
+					</section>
+					<section>
+						<h2>whalefortune dockerfile</h2>
+						<pre><code>
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y cowsay fortune-mod
+RUN mv /usr/share/cowsay/cows/default.cow /usr/share/cowsay/cows/orig-default.cow
+COPY docker.cow /usr/share/cowsay/cows/
+RUN ln -sv /usr/share/cowsay/cows/docker.cow /usr/share/cowsay/cows/default.cow
+
+RUN rm -rf /var/lib/apt/lists/*
+ENV PATH $PATH:/usr/games
+VOLUME ["/usr/share/games/fortunes/"]
+
+CMD fortune bd | cowsay
+						</code></pre>
+					</section>
+					<section>
+						<h2>Publish it on dockerhub</h2>
+						<ul>
+							<li>Create your account</li>
+							<li>Create a repository</li>
+						</ul>
+						<pre><code>$ docker tag magelle/whalefortune magelle/whalefortune:1.0.0 </code></pre></li>
+						<pre><code>$ docker login</code></pre>
+						<pre><code>$ docker push magelle/whalefortune</code></pre>
+					</section>
+				</section>
+				<section>
+					<h1 class="section-title">More containers</h1>
+					<section>
+						<h2>Getting dockchat</h2>
+						<pre><code>$ git clone https://github.com/nicolaka/dockchat.git</code></pre>
+					</section>
+					<section>
+						<h2>Running dockchat</h2>
+						<pre><code>$ docker run -p 27017:27017 mongo:latest</code></pre>
+						<pre><code>$ docker build -t dockchatweb ./</code></pre>
+						<pre><code>$ docker run -p 5000:5000 -t dockchatweb</code></pre>
+						<p>Go to <a href="http://localhost:5000">http://localhost:5000</a></p>
+					</section>
+					<section>
+						<h2>Docker-compose</h2>
+						<h3>Running multi container docker applications</h3>
+						<pre><code>$ sudo apt-get install docker-compose</code></pre>
+					</section>
+					<section>
+						<h2>Docs</h2>
+						<a href="https://docs.docker.com/compose/compose-file/">https://docs.docker.com/compose/compose-file/</a>
+						<a href="https://docs.docker.com/compose/reference/">https://docs.docker.com/compose/reference/</a>
+					</section>
+					<section>
+						<h2>Running with docker-compose</h2>
+						<pre><code>$ docker-compose build</code></pre>
+						<pre><code>$ docker-compose up -d</code></pre>
+						<p>Go to <a href="http://localhost:5000">http://localhost:5000</a></p>
+					</section>
+					<section>
+						<h2>docker-compose.yml</h2>
+						<pre><code>
+# Mongo DB
+db:
+  image: mongo
+  expose:
+	- 27017
+  command: --smallfiles
+# Python App
+web:
+  build: .
+  ports:
+	- "5000:5000"
+  links:
+   - db:db
+						</code></pre>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
