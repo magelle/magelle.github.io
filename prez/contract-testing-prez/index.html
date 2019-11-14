@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/beige.css ">
 		<link rel="stylesheet" href="css/custom.css">
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -28,10 +28,10 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h4>N’ayez plus peur</h4>
+					<h3>N’ayez plus peur</h3>
 					<img src="images/refactor-meme.jpg"
 						 alt="Refactor or don't that is the question" />
-					<h4>de refactorer vos API WEB</h4>
+					<h3>de refactorer vos API WEB</h3>
 					<aside class="notes">
 						Jessica commence
 					</aside>
@@ -40,11 +40,11 @@
 					<table>
 						<tr>
 							<td style="text-align: center;"><h3>Jessica</h3></td>
-							<td style="text-align: center;"><h2>&</h2></td>
+							<td style="text-align: center;"><h3>&</h3></td>
 							<td style="text-align: center;"><h3>Maxime</h3></td>
 						</tr>
 						<tr>
-							<td><img src="images/carbon-it.png" height="60px"/></td>
+							<td><img src="images/carbonit.png" height="60px"/></td>
 							<td></td>
 							<td><img src="images/novencia.jpg" height="60px"/></td>
 						</tr>
@@ -89,10 +89,10 @@
 					<section>
 						<h3>Modifier une API</h3>
 						<ul>
-							<li>Combien ça va coûter ?</li>
-							<li>Comment pas tout casser ?</li>
+							<li>Quels impacts ?</li>
+							<li>Comment sécuriser ?</li>
 						</ul>
-						<img src="images/peur.gif" alt="On a peur" />
+						<img src="images/peur.gif" alt="On a peur"/>
 						<aside class="notes">
 							Maxime
 							<br/>
@@ -101,7 +101,7 @@
 						</aside>
 					</section>
 					<section>
-						<h2>Ce qui serait génial</h2>
+						<h2>Ce qu'il nous faudrait</h2>
 						<aside class="notes">
 							Jessica
 						</aside>
@@ -113,7 +113,7 @@
 							Jessica
 						</aside>
 					</section>
-					<section>
+					<!--<section>
 						<h3>Les formats</h3>
 						<img src="images/form-to-fill.jpg" alt="interaction format"/>
 						<aside class="notes">
@@ -121,7 +121,7 @@
 							<br/>
 							Les formats d'échanges, les vérifier
 						</aside>
-					</section>
+					</section>-->
 					<section>
 						<h3>Prédire ...</h3>
 						<img src="images/crystal-ball.jpg" alt="Crystal ball" />
@@ -146,7 +146,7 @@
 								Maxime
 							</aside>
 					</section>
-					<section>
+					<section data-transition="none" >
 						<h3>D'habitude on teste ça</h3>
 						<img src="images/tested-layer-architecture.png" alt="Un service"
 							 height="550px"/>
@@ -154,7 +154,7 @@
 							Maxime
 						</aside>
 					</section>
-					<section>
+					<section data-transition="none" >
 						<h3>Mais ...</h3>
 						<img src="images/not-tested-layer-architecture.png" alt="Interaction entre deux services"
 							 height="550px"/>
@@ -198,7 +198,6 @@
 						<h3>Provider</h3>
 						<blockquote>Celui qui propose l'API</blockquote>
 						<p>Exemple: Mon service REST</p>
-
 						<aside class="notes">
 							Jessica
 						</aside>
@@ -207,16 +206,6 @@
 						<h3>Consumer</h3>
 						<blockquote>Celui qui appelle l'API</blockquote>
 						<p>Exemple: Mes clients Angular</p>
-
-						<aside class="notes">
-							Jessica
-						</aside>
-					</section>
-					<section>
-						<h3>Comment ?</h3>
-						<img src="images/contract-testing-mocks.png"
-								alt="Un contract, tester avec des mocks"
-								height="500px"/>
 						<aside class="notes">
 							Jessica
 						</aside>
@@ -239,11 +228,12 @@
 					</section>
 
 					<section>
-						<h2>Tests</h2>
-						<img src="images/full-test-1.png" alt="Une interaction"
-							 height="300px"/>
+						<h3>Comment ?</h3>
+						<img src="images/contract-testing-mocks.png"
+								alt="Un contract, tester avec des mocks"
+								height="500px"/>
 						<aside class="notes">
-								Jessica
+							Jessica
 						</aside>
 					</section>
 
@@ -325,38 +315,11 @@
 					</section>
 
 					<section>
-						<h3>Provider Driven</h3>
-						<blockquote>Je fonctionne de cette manière</blockquote>
-						<img src="images/provider-driven-contract.png"
-						     alt="Un contrat pour tous les consumers" />
-						<aside class="notes">Jessica</aside>
- 					</section>
-
-					<section>
 						<h3>Consumer Driven</h3>
 						<blockquote>J'ai besoin de ça</blockquote>
 						<img src="images/consumer-driven-contract.png"
 						     alt="Plusieurs contract pour un provider" />
 						<aside class="notes">Jessica</aside>
-					</section>
-
-					<section>
-						<h2>On fait quoi ?</h2>
-						<aside class="notes">
-							Jessica pose la question<br/>
-							Maxime enchaine
-						</aside>
-					</section>
-
-					<section>
-						<h3>Quand faire du provider driven ?</h3>
-                        <ul>
-							<li>Consumers inconnus</li>
-							<li>Beaucoup de consumers</li>
-							<li>Communication difficile</li>
-						</ul>
-						<blockquote>ex: Api publique de Twitter</blockquote>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section>
 						<h3>Quand faire du consumer driven ?</h3>
@@ -367,6 +330,25 @@
 						<blockquote>ex: Backend for Frontend</blockquote>
 						<aside class="notes">Maxime</aside>
 					</section>
+
+					<section>
+						<h3>Provider Driven</h3>
+						<blockquote>Je fonctionne de cette manière</blockquote>
+						<img src="images/provider-driven-contract.png"
+						     alt="Un contrat pour tous les consumers" />
+						<aside class="notes">Jessica</aside>
+ 					</section>
+					<section>
+						<h3>Quand faire du provider driven ?</h3>
+                        <ul>
+							<li>Consumers inconnus</li>
+							<li>Beaucoup de consumers</li>
+							<li>Communication difficile</li>
+						</ul>
+						<blockquote>ex: Api publique de Twitter</blockquote>
+						<aside class="notes">Maxime</aside>
+					</section>
+
 				</section>
 
 				<section>
@@ -377,11 +359,9 @@
 					<section>
 						<h3>Echange des contrats</h3>
 						<ul>
-							<li>Commit dans le Provider</li>
 							<li>Github, bitbucket, ...</li>
-							<li>Amazon S3</li>
-							<li>Nexus / Artifactory</li>
-							<li><b>Pact Broker</b></li>
+							<li>Nexus, Artifactory, ...</li>
+							<li>Contract repository</li>
 						</ul>
 						<aside class="notes">Maxime</aside>
 					</section>
@@ -441,11 +421,11 @@
 						<aside class="notes">Jessica</aside>
 					</section>
 					<section>
-						<h3>Pact Broker</h3>
+						<h3>Contract Repository : Pact Broker</h3>
 						<ul>
-							<li>Regroupe les Pacts</li>
-							<li>Documentation</li>
-							<li>Carte des interactions</li>
+							<li>Stocke les contrats</li>
+							<li>Cartographie les interactions</li>
+							<li>Liste les vérifications</li>
 						</ul>
 						<aside class="notes">Jessica</aside>
 					</section>
@@ -473,29 +453,27 @@
 
 					<section>
 						<h3>Search Consumer : Définition du contrat</h3>
-						<img src="images/full-test-1.png" alt="Une interaction"
-							height="300px"/>
+						<img src="images/contract.png" />
 						<aside class="notes" >Maxime</aside>
 					</section>
 
                     <section data-background="#cef28f">
                         <h3>Search Consumer : Définition du contrat</h3>
                         <pre><code class="hljs java">@Pact(provider = "Catalog_Provider",consumer = "Search_Consumer")
-fun getAnExistingProduct(builder: PactDslWithProvider):
-                            RequestResponsePact {
-    return builder
-            .uponReceiving("Get a product")
-            .method("GET")
-            .path("/products/1")
-            .willRespondWith()
-            .status(HttpStatus.OK.value())
-            .body(PactDslJsonBody()
-                    .numberType("id", 1)
-                    .stringType("name", "Shoes")
-                    .asBody())
-            .toPact()
+fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
+	return builder
+		.uponReceiving("Get a product")
+		.method("GET")
+		.path("/products/1")
+		.willRespondWith()
+		.status(HttpStatus.OK.value())
+		.body(PactDslJsonBody()
+			.numberType("id", 1)
+			.stringType("name", "Shoes")
+			.asBody())
+		.toPact()
 }</code></pre>
-<aside class="notes" >Maxime</aside>
+							<aside class="notes" >Maxime</aside>
 					</section>
 					<section data-background="#cef28f">
 						<h3>Contrat généré</h3>
@@ -606,16 +584,15 @@ class CatalogContractTest {
 
 				<section>
 					<section>
-						<h3>Maintenant</h3>
-						<ul>
-							<li class="fragment">[V] Interactions déclarées</li>
-							<li class="fragment">[V] Interactions testées</li>
-							<li class="fragment">[V] Interactions visualisées</li>
-						</ul>
+						<h3>Des interactions maintenant</h3>
+							<p class="fragment"><i class="fa fa-check"></i> Déclarées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Centralisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Visualisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Testées</p>
 						<aside class="notes">Jessica</aside>
 					</section>
 					<section>
-						<h3>Maintenant</h3>
+						<h3>Ce qui nous permet</h3>
 						<img src="images/micro-services-architecture-tested.png" alt="tout est testé" 
 							 height="500px"/>
 						<aside class="notes">Jessica<br/>Maxime enchaine</aside>
@@ -634,28 +611,8 @@ class CatalogContractTest {
 					</section>
 					<section>
 						<h3>Attention</h3>
-						<table>
-							<thead>
-							<tr>
-								<td>Do</td>
-								<td>Don't</td>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<ul>
-										<li>Tests d'interactions</li>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>Tests fonctionnels</li>
-										<li>Tests de charge</li>
-									</ul>
-								</td>
-							</tr>
-							</tbody>
+							<p><i class="fa fa-ban"></i> Tests fonctionnels</p>
+							<p><i class="fa fa-ban"></i> Tests de charge</p>
 						</table>    
 						<aside class="notes">
 							Maxime
@@ -663,40 +620,7 @@ class CatalogContractTest {
 					</section>
 				</section>
 
-				<section>
-					<section>
-						<h2>Conclusion</h2>
-						<ul>
-							<li>Tester des interactions</li>
-							<li>Partager les contrats</li>
-							<li>Visualiser les échanges</li>
-						</ul>
-						<aside class="notes">
-							Maxime
-						</aside>
-					</section>
-					<aside class="notes">
-						<ul>
-							<li>Quel consumer va casser -> aucun</li>
-							<li>Quel services sont impacté -> Pact broker network</li>
-							<li>Qui consome quelle donnée -> Contract</li>
-						</ul>
-						<aside class="notes">
-							Maxime
-						</aside>
-					</aside>
-
-					<section>
-						<h3>Les bémols</h3>
-						<ul>
-							<li>Charge en plus</li>
-							<li>Consumer Driven -> plus de contrats</li>
-							<li>Gestion des versions</li>
-						</ul>
-						<aside class="notes">
-							Maxime
-						</aside>
-					</section>
+				<section>			
 
 					<section>
 						<h3>de Provider driven</h3>
@@ -704,14 +628,47 @@ class CatalogContractTest {
 						<ul>
 							<li>Pact, polyglote</li>
 							<li>Plus précis</li>
-							<li><b>/!\</b> Plus lourd</li>
+							<li><i class="fa fa-exclamation"></i> Plus lourd</li>
 						</ul>
 						<aside class="notes">
 							Maxime
 						</aside>
 					</section>
+
+					<section>
+						<h3>Les bémols</h3>
+						<ul>
+							<li>Plus de contrats</li>
+							<li>Plus de charge</li>
+							<li>Complexité du versionning</li>
+						</ul>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+
+<!--					<section>-->
+<!--						<h2>Conclusion</h2>-->
+<!--						<ul>-->
+<!--							<li>Tester des interactions</li>-->
+<!--							<li>Partager les contrats</li>-->
+<!--							<li>Visualiser les échanges</li>-->
+<!--						</ul>-->
+<!--						<aside class="notes">-->
+<!--							<ul>-->
+<!--								<li>Quel consumer va casser -> aucun</li>-->
+<!--								<li>Quel services sont impactés -> Pact broker network</li>-->
+<!--								<li>Qui consome quelle donnée -> Contract</li>-->
+<!--							</ul>-->
+<!--							Maxime-->
+<!--						</aside>-->
+<!--					</section>-->
 				</section>
 				
+				<section>
+					<h2>Merci</h2>
+				</section>
+
 				<section>
 					<h2>Questions ?</h2>
 					<aside class="notes">
