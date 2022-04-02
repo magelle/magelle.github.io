@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>N'ayez plus peur de refactorer vos API web</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/beige.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Ne cassez plus vos consommateurs</h3>
+					<img src="images/refactor-meme.jpg"
+						 alt="Refactor or don't that is the question" />
+					<h3>grâce au contract testing</h3>
+					<aside class="notes">
+						Yannick commence
+					</aside>
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td style="text-align: center;"><h3>Maxime</h3></td>
+							<td style="text-align: center;"><h3>&</h3></td>
+							<td style="text-align: center;"><h3>Yannick</h3></td>
+						</tr>
+						<tr>
+							<td style="text-align: center; vertical-align: middle;">Indépendant</td>
+							<td></td>
+							<td style="text-align: center; vertical-align: middle;"><img src="images/sundayapp.png" height="60px"/></td>
+						</tr>
+						<tr>
+							<td><a href="https://twitter.com/maxime_gelle">@maxime_gelle</a></td>
+							<td></td>
+							<td><a href="https://twitter.com/ygrenzinger">@ygrenzinger</a></td>
+						</tr>
+					</table>
+					<aside class="notes">
+						Maxime et Yannick
+					</aside>
+				</section>
+
+				<section>
+					<section> 
+						<h2>#micro-services !!!</h2>
+						<img src="images/thumb-up.gif" alt="Thumb up" />
+						<aside class="notes">
+							Yannick
+						</aside>
+					</section>
+					<section>
+						<h3>Quelques interactions :)</h3>
+						<img src="images/microservices-architecture.png"
+							 alt="Notre super architcture, bon c'est un peu compliqué"
+							 height="500px"/>
+					</section>
+					<section>
+						<img src="images/testing-in-production.jpg"
+							 alt="Si possible, ne pas tester uniquement en production"
+							 height="500px"/>
+					</section>
+					<section>
+						<h3>Comment tester ?</h3>
+					</section>
+					<section>
+						<h3>E2E au niveau plateforme</h3>
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align: center;">Avantages</th>
+									<th style="text-align: center;">Désavantages</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center;">Simule la prod</td>
+									<td style="text-align: center;">Complexe à mettre en place</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="text-align: center;">Lent et Bloquant</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="text-align: center;">Difficile à debug</td>
+								</tr>	
+							</tbody>	
+						</table>
+					</section>
+					<section>
+						<h3>Mock des autres microservices</h3>
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align: center;">Avantages</th>
+									<th style="text-align: center;">Désavantages</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center;">Très rapide</td>
+									<td style="text-align: center;">Rien à voir avec la réalité</td>
+								</tr>
+								<tr>
+									<td style="text-align: center;">Pas d'infra nécessaire</td>
+									<td style="text-align: center;">Des tests qui passent mais la prod casse</td>
+								</tr>	
+							</tbody>	
+						</table>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Contract Testing !</h2>
+						<aside class="notes">
+							Section par maxime 
+						</aside>
+					</section>
+					<section>
+						<h3>Tester les interactions</h3>
+						<img src="images/contract-testing-principle.png" height="400px"
+								alt="both consumer and provider should verify the contract" />
+						<aside class="notes">
+							Tester les interactions entre consumer et provider
+						</aside>
+					</section>
+					<section>
+						<h3>Provider / Producer</h3>
+						<blockquote>Celui qui propose l'API</blockquote>
+						<p>Exemple: Mon service REST</p>
+					</section>
+					<section>
+						<h3>Consumer</h3>
+						<blockquote>Celui qui appelle l'API</blockquote>
+						<p>Exemple: Mes clients Angular</p>
+					</section>
+					<section>
+						<h2>On définit un contrat</h2>
+						<img src="images/a-contract-and-interactions.png" alt="Un contract"
+							 height="400px"/>
+					</section>
+					<section>
+						<h2>Et des interactions</h2>
+						<img src="images/interaction.png" alt="Une interaction"
+							 height="400px"/>
+					</section>
+
+					<section>
+						<h3>Comment ?</h3>
+						<img src="images/contract-testing-mocks.png"
+								alt="Un contract, tester avec des mocks"
+								height="500px"/>
+					</section>
+
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-2.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-3.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-4.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-5.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-6.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-7.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-8.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-9.png" height="300px"/>
+					</section>
+
+
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-10.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-11.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-12.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-13.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-14.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-15.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-16.png" height="300px"/>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-17.png" height="300px"/>
+					</section>
+
+					<section data-transition="slide" >
+						<h2>Au global</h2>
+						<img src="images/both-tests.png" alt="Global view" height="250px">
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Le contenu de l'atelier</h2>
+					</section>
+					<section>
+						<h3>Somaire</h3>
+						<ul>
+							<li>Provider driven</li>
+							<li>Consumer driven</li>
+						</ul>
+					</section>
+					<section>
+						<h3>L'architecture de notre site de vente de livres</h3>
+						<img src="images/hands-on-architecture.png"
+							 alt="Les différents éléments du contexte de l'atelier"
+							 height="500px"/>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Provider Driven</h2>
+						<blockquote>Les contrats sont controlés par le fournisseur</blockquote>
+						<img src="images/provider-driven-contract.png"
+						     alt="Un contrat pour tous les consumers" />
+ 					</section>
+					<section>
+						<h3>Quand faire du provider driven ?</h3>
+                        <ul>
+							<li>Consumers inconnus</li>
+							<li>Beaucoup de consumers</li>
+							<li>Communication difficile</li>
+						</ul>
+						<blockquote>ex: Api publique de Twitter</blockquote>
+					</section>
+					<section>
+						<h3>Spring Cloud Contract</h3>
+						<img src="images/spring-cloud-logo.png" height="200px"
+								alt="Spring Cloud Contract logo" />
+						<p>Marcin Grzejszczak <a href="https://twitter.com/MGrzejszczak">@MGrzejszczak</a> </p>
+						<aside class="notes">
+							Yannick
+						</aside>
+					</section>
+					<section>
+						<h3>Les avantages</h3>
+						<ul>
+							<li>Intégration facile dans Spring Cloud</li>
+							<li>Génération des tests de votre API REST et de vos messages côté fournisseur</li>
+							<li>Promeut une approche ATDD</li>
+							<li>Génération des stubs WireMock pour les consommateurs</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Spring cloud contract</h3>
+						<img src="images/spring-cloud-contract.png" height="550px"
+								alt="Spring Cloud Contract architecture" />
+					</section>
+					<section>
+						<h3>DSL avancé pour définir un contrat</h3>
+						<blockquote>Groovy mais aussi YML / Java / Kotlin</blockquote>
+						<p>L'exemple qui suit est le contrat du endpoint GET /v1/books</p>
+					</section>
+
+                    <section>
+                        <h3>Squelete du contrat</h3>
+						<pre><code class="hljs groovy">
+package contracts
+import org.springframework.cloud.contract.spec.Contract
+
+Contract.make {
+	request { ... }
+	response { ... }
+}
+							</code></pre>
+					</section>
+
+					<section>
+						<h3>Définition de la requête</h3>
+						<pre><code class="hljs groovy">
+method 'GET'
+url '/v1/books'
+headers {
+	contentType(applicationJson())
+}
+						</code></pre>
+				</section>
+
+			<section>
+				<h3>Définition de la réponse</h3>
+				<pre><code class="hljs groovy">status OK()
+body("""[{
+	"id": "d4d37e73-77a0-4616-8bd2-5ed983d45d14",
+	"name": "Java",
+	"price": "19.9",
+	"stock": 100
+},{
+	"id": "8364948b-6221-4cd8-9fd9-db0d17d45ef8",
+	"name": "Kotlin",
+	"price": "22.4",
+	"stock": 0
+}]""")
+headers { contentType(applicationJson()) }
+					</code></pre>
+			</section>
+			<section>
+				<h3>Place à la pratique !</h3>
+				<p>Clone du repository github <a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a></p>
+			</section>
+		</section>
+
+		<section>
+
+			<section>
+				<h2>Partie 2 : Consumer Driven</h2>
+				<blockquote>Le consommateur pousse les contrats dont il a besoin</blockquote>
+				<img src="images/consumer-driven-contract.png"
+						alt="Plusieurs contract pour un provider" />
+				<aside class="notes">Maxime</aside>
+			</section>
+			<section>
+				<h3>Quand faire du consumer driven ?</h3>
+				<ul>
+					<li>Peu de consommateur</li>
+					<li>Communication aisée</li>
+				</ul>
+				<blockquote>ex: Backend for Frontend</blockquote>
+			</section>
+
+			<section>
+				<h3>De provider à consumer driven ?</h3>
+			</section>
+
+			<section>
+				<h3>Repo distant</h3>
+				<p>Dans le cadre du "consumer driven", on va favoriser une zone de dépo des contrats par consommateurs pour chaque fournisseur</p>
+			</section>
+
+			<section>
+				<h3>Pact, le framework Consumer Driven polyglot</h3>
+				<img src="images/pact-logo.png" alt="Pact logo" >
+				<aside class="notes">Mais on peut garder Spring Cloud Contract ;)</aside>
+			</section>
+
+			<section>
+				<h3>Polyglote</h3>
+				<img src="images/logo-techno/ruby.png" height="100px">
+				<img src="images/logo-techno/java.png" height="100px">
+				<img src="images/logo-techno/dotnet.png" height="100px">
+				<img src="images/logo-techno/go.png" height="100px">
+				<img src="images/logo-techno/javascript.png" height="100px">
+				<img src="images/logo-techno/swift.png" height="100px">
+				<img src="images/logo-techno/php.png" height="100px">
+				<aside class="notes">Maxime</aside>
+			</section>
+
+			<section>
+				<h3>Contract Repository : Pact Broker</h3>
+				<ul>
+					<li>Stocke les contrats</li>
+					<li>Cartographie les interactions</li>
+					<li>Liste les vérifications</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Pact Broker</h3>
+				<img src="images/pact-broker-network-diagram.png" 
+						height="500px"
+						alt="interaction network"/>
+				<aside class="notes">Maxime<br/>
+					Maxime enchaine pour la démo</aside>
+			</section>
+
+			<section>
+				<h3>Place à la pratique !</h3>
+				<p>Switch sur la branche "part2" de <a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a></p>
+			</section>
+		</section>
+
+				<section>
+					<section>
+						<h2>Conclusion</h2>
+					</section>
+					<section>
+						<h3>Des interactions maintenant</h3>
+							<p class="fragment"><i class="fa fa-check"></i> Déclarées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Centralisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Visualisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Testées</p>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Ce qui nous permet</h3>
+						<img src="images/micro-services-architecture-tested.png" alt="tout est testé" 
+								height="500px"/>
+						<aside class="notes">Maxime<br/>Maxime enchaine</aside>
+					</section>
+					<section>
+						<h3>En plus</h3>
+						<img src="images/Pyramide-test.png" alt="On descend d'un cran dans la pyramide des tests" />
+						<aside class="notes">
+							Maxime <br/>
+							avant -> testé via e2e, test manuels, en prod<br/>
+							maintenant -> test intégration<br/>
+							+ rapide<br/>
+							+ fiable<br/>
+							- cher <br/>
+						</aside>
+					</section>
+					<section>
+						<h3>Attention</h3>
+							<p><i class="fa fa-ban"></i> Tests fonctionnels</p>
+							<p><i class="fa fa-ban"></i> Tests de charge</p>
+						</table>    
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+				</section>
+
+				<section>			
+
+					<section>
+						<h3>de Provider driven</h3>
+						<h3>à Consumer driven</h3>
+						<ul>
+							<li>Pact, polyglote</li>
+							<li>Plus précis</li>
+							<li><i class="fa fa-exclamation"></i> Plus lourd</li>
+						</ul>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+
+				</section>
+				
+				<section>
+					<h2>Merci</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
