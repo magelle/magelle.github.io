@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      * {
+          box-sizing: border-box;
+      }
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(135deg, #ffd5b6, #FFA500);
+          margin: 0;
+          padding: 20px;
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .container {
+          background-color: white;
+          padding: 40px;
+          border-radius: 20px;
+          max-width: 700px;
+          width: 100%;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .intro-box {
+          background: #fff3e0;
+          padding: 20px;
+          border-radius: 15px;
+          margin-bottom: 30px;
+          border: 2px dashed #FFA500;
+      }
+      h1, h3 {
+          color: #FFA500;
+          margin-bottom: 20px;
+      }
+      h1 {
+          text-align: center;
+          font-size: 2.5em;
+      }
+      .transport-section {
+          background: #fff9f0;
+          padding: 25px;
+          border-radius: 15px;
+          margin-bottom: 30px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      }
+      .transport-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+          padding: 10px;
+          background: white;
+          border-radius: 10px;
+          transition: transform 0.2s ease;
+      }
+      .transport-item:hover {
+          transform: translateX(10px);
+      }
+      .transport-icon {
+          font-size: 24px;
+          margin-right: 15px;
+          width: 40px;
+          text-align: center;
+      }
+      label {
+          margin-right: 10px;
+          flex: 1;
+      }
+      input[type="number"] {
+          width: 70px;
+          padding: 8px;
+          border: 2px solid #FFA500;
+          border-radius: 8px;
+          font-size: 16px;
+          outline: none;
+          transition: all 0.3s ease;
+      }
+      textarea {
+          width: 100%;
+          padding: 15px;
+          border: 2px solid #FFA500;
+          border-radius: 12px;
+          margin-top: 10px;
+          min-height: 120px;
+          font-family: inherit;
+          font-size: 16px;
+          resize: vertical;
+          outline: none;
+      }
+      button {
+          background-color: #FFA500;
+          color: white;
+          border: none;
+          padding: 15px 30px;
+          border-radius: 12px;
+          font-size: 18px;
+          cursor: pointer;
+          width: 100%;
+          margin-top: 20px;
+          transition: all 0.3s ease;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      button:hover {
+          background-color: #FF8C00;
+          transform: translateY(-2px);
+      }
+      .feedback-section {
+          background: white;
+          padding: 20px;
+          border-radius: 15px;
+          margin-bottom: 20px;
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📊 Mon trajet de la semaine</h1>
+
+  <div class="intro-box">
+    <h3>🌍 Participez au challenge mobilité !</h3>
+    <p>Dites-nous comment vous vous êtes déplacé cette semaine et aidez-nous à améliorer la mobilité de demain ! 🚀</p>
+  </div>
+
+  <form>
+    <div class="transport-section">
+      <h3>🚗 Mes moyens de transport</h3>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚶</div>
+        <label>À pied</label>
+        <input type="number" min="0" max="7" name="pied" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚲</div>
+        <label>Vélo personnel</label>
+        <input type="number" min="0" max="7" name="velo_perso" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚲</div>
+        <label>Vélo en libre service</label>
+        <input type="number" min="0" max="7" name="velo_service" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">⚡</div>
+        <label>Vélo électrique</label>
+        <input type="number" min="0" max="7" name="velo_electrique" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🛴</div>
+        <label>Trottinette électrique</label>
+        <input type="number" min="0" max="7" name="trottinette" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚌</div>
+        <label>Bus urbain</label>
+        <input type="number" min="0" max="7" name="bus" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚊</div>
+        <label>Tramway</label>
+        <input type="number" min="0" max="7" name="tram" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚇</div>
+        <label>Métro</label>
+        <input type="number" min="0" max="7" name="metro" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">👥</div>
+        <label>Covoiturage</label>
+        <input type="number" min="0" max="7" name="covoiturage" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🚗</div>
+        <label>Voiture solo</label>
+        <input type="number" min="0" max="7" name="voiture" placeholder="0"> jours
+      </div>
+
+      <div class="transport-item">
+        <div class="transport-icon">🏍️</div>
+        <label>Deux-roues motorisé</label>
+        <input type="number" min="0" max="7" name="deux_roues" placeholder="0"> jours
+      </div>
+    </div>
+
+    <div class="feedback-section">
+      <h3>💭 Comment ça s'est passé ?</h3>
+      <textarea name="feedback" placeholder="Racontez-nous votre expérience..."></textarea>
+    </div>
+
+    <div class="feedback-section">
+      <h3>🎯 Objectifs pour la semaine prochaine ?</h3>
+      <textarea name="amelioration" placeholder="Quels sont vos objectifs..."></textarea>
+    </div>
+
+    <button type="submit">Envoyer mon bilan</button>
+  </form>
+</div>
+</body>
+</html>
